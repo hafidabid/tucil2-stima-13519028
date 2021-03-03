@@ -50,11 +50,7 @@ class Graf :
         UNTUK MENDAPATKAN GRAF YANG TIDAK MEMILIKI PREC / PANAH YANG MENGARAH KE SUATU NODE
         :return: LIST OF NO PREC NODE
         '''
-        ret = []
-        for x in self.data:
-            if(len(x["preq"])==0):
-                ret.append(x["id"])
-        return ret
+        return [x["id"] for x in self.data if (len(x["preq"])==0)]
 
     def getJumlahData(self):
         '''
@@ -72,8 +68,7 @@ def readfiles(flname):
     txt = open("../test/" + flname , 'r').readlines()
     for x in txt:
         if "." not in x: return []
-    data = [x.strip().replace('.','').replace(" ","").split(sep=",") for x in txt]
-    return data
+    return [x.strip().replace('.','').replace(" ","").split(sep=",") for x in txt]
 
 def runTopologiSort(objekGraf,semester=1):
     '''
